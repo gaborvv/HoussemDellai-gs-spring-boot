@@ -2,6 +2,13 @@
 pool:
     vmImage: 'ubuntu-latest'
 
+
+parameters:
+- name: "branch"
+  displayName: Git branch/tag/commit id
+  type: string
+  default: 'main'
+
 steps:
 - task: Maven@3
   inputs:
