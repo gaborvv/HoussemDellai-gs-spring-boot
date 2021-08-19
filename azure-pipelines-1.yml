@@ -39,11 +39,11 @@ stages:
   dependsOn: Test
   jobs:
     steps:
-  - script: echo stage ReleaseA!
+    - script: echo stage ReleaseA!
 
 - stage: 'ReleaseB'
   displayName: 'Release to production for Company B'
   dependsOn: Test
   jobs:
     steps:
-  - script: echo stage ReleaseB!
+    - script: echo stage ReleaseB!
