@@ -24,7 +24,7 @@ stages:
   jobs:
   - job: 
     steps:
-  - script: echo stage dev!
+    - script: echo stage dev!
 
 - stage: 'Test'
   displayName: 'Release to Test'
@@ -32,12 +32,13 @@ stages:
   jobs:
   - job: 
     steps:
-  - script: echo stage test!
+    - script: echo stage test!
 
 - stage: 'ReleaseA'
   displayName: 'Release to production for Company A'
   dependsOn: Test
   jobs:
+  - job:
     steps:
     - script: echo stage ReleaseA!
 
@@ -45,5 +46,6 @@ stages:
   displayName: 'Release to production for Company B'
   dependsOn: Test
   jobs:
+  - job:
     steps:
     - script: echo stage ReleaseB!
