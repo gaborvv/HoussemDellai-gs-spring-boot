@@ -21,18 +21,29 @@ stages:
 - stage: 'Dev'
   displayName: 'Release to Dev'
   dependsOn: CI
-
+  jobs:
+  - job: 
+    steps:
+  - script: echo stage dev!
 
 - stage: 'Test'
   displayName: 'Release to Test'
   dependsOn: Dev
- 
+  jobs:
+  - job: 
+    steps:
+  - script: echo stage test!
 
 - stage: 'ReleaseA'
   displayName: 'Release to production for Company A'
   dependsOn: Test
-
+  jobs:
+    steps:
+  - script: echo stage ReleaseA!
 
 - stage: 'ReleaseB'
   displayName: 'Release to production for Company B'
   dependsOn: Test
+  jobs:
+    steps:
+  - script: echo stage ReleaseB!
