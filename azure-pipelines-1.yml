@@ -8,56 +8,31 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-# global variables
-variables:
-  artifactName: ReleaseArtifact
-  releaseTemplate: 'templates/azure-pipelines.release.yml'
+
 
 stages:
 - stage: CI
   displayName: 'Continuous Integration'
   jobs:
   - job: Build
-  ...
   - job: Publish
-  ...
+
 
 - stage: 'Dev'
   displayName: 'Release to Dev'
   dependsOn: CI
-  jobs:
-  - template: ${{ variables.releaseTemplate }}
-    parameters:
-      variableGroup: 'Dev'
-      environment: 'DEV'
-      artifactName: ${{ variables.artifactName }}
+
 
 - stage: 'Test'
   displayName: 'Release to Test'
   dependsOn: Dev
-  jobs:
-  - template: ${{ variables.releaseTemplate }}
-    parameters:
-      variableGroup: 'Test'
-      environment: 'TEST'
-      artifactName: ${{ variables.artifactName }}
+ 
 
 - stage: 'ReleaseA'
   displayName: 'Release to production for Company A'
   dependsOn: Test
-  jobs:
-  - template: ${{ variables.releaseTemplate }}
-    parameters:
-      variableGroup: 'Company_A.Release'
-      environment: 'COMPANY_A-RELEASE'
-      artifactName: ${{ variables.artifactName }}
+
 
 - stage: 'ReleaseB'
   displayName: 'Release to production for Company B'
   dependsOn: Test
-  jobs:
-  - template: ${{ variables.releaseTemplate }}
-    parameters:
-      variableGroup: 'Company_B.Release'
-      environment: 'COMPANY_B-RELEASE'
-      artifactName: ${{ variables.artifactName }}
